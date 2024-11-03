@@ -6,6 +6,7 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  variant?: string;
 }
 
 // Définir le type du contexte

@@ -1,35 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductCatalog from './pages/ProductCatalog';
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+import ProductDetails from './pages/ProductDetails'; 
 import About from './pages/About';
 import Blog from './pages/Blog';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { AuthProvider } from './context/AuthContext';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
+    <AuthProvider>  {/* On enveloppe l'application dans AuthProvider */}
+      <Router>
         <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductCatalog />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/blog" element={<Blog />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductCatalog />} />
+          <Route path="/products/:id" element={<ProductDetails />} /> {/* Ajout de ProductDetails */}
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />   {/* Route pour login */}
+          <Route path="/signup" element={<Signup />} /> {/* Route pour signup */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
