@@ -7,15 +7,18 @@ const CheckoutForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!stripe || !elements) return;
-
+    if (!stripe || !elements) {
+      console.log("Stripe or Elements not loaded");
+      return;
+    }
+    
     const cardElement = elements.getElement(CardElement);
     if (cardElement) {
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
       });
-
+  
       if (error) {
         console.error('[error]', error);
       } else {
@@ -24,6 +27,7 @@ const CheckoutForm: React.FC = () => {
       }
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>

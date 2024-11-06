@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, User } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // Importation du contexte d'authentification
+import { useAuth } from '../context/AuthContext';
 
-const Header: React.FC = () => {
-  const { user, logout } = useAuth(); // On récupère l'utilisateur et la fonction de déconnexion du contexte
+interface HeaderProps {
+  onCartClick: () => void; // Nouvelle prop pour ouvrir le panier
+}
+
+const Header: React.FC<HeaderProps> = ({ onCartClick }) => {
+  const { user, logout } = useAuth();
 
   return (
     <header className="bg-amber-800 text-white p-4">
@@ -19,11 +23,11 @@ const Header: React.FC = () => {
           </ul>
         </nav>
         <div className="flex items-center space-x-4">
-          <Link to="/cart" className="hover:text-amber-200">
+          {/* Utilisation de onCartClick pour ouvrir la sidebar */}
+          <button onClick={onCartClick} className="hover:text-amber-200">
             <ShoppingCart />
-          </Link>
+          </button>
 
-          {/* Vérifie si l'utilisateur est connecté */}
           {user ? (
             <div className="flex items-center space-x-4">
               <Link to="/account" className="hover:text-amber-200 flex items-center">

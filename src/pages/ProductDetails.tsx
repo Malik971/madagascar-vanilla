@@ -276,7 +276,7 @@ const ProductDetails: React.FC = () => {
           <div className="mt-4">
             {/* Effet sur le bouton « Voir le panier » */}
             <Link
-              to="/cart"
+              to="/CartSidebar"
               className="text-amber-600 hover:underline hover:text-amber-800 hover:scale-105 transition-transform transform duration-300"
             >
               Voir le panier

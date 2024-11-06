@@ -3,8 +3,9 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../components/CheckoutForm';
 
-// Clé publique Stripe (remplace-la par ta clé publique)
-const stripePromise = loadStripe('pk_test_1234567890abcdef1234567890abcdef');
+// Charger Stripe avec la clé publique depuis le fichier .env
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY!);
+console.log("Stripe Public Key:", import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const Checkout: React.FC = () => {
   return (
