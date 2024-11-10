@@ -1,0 +1,12 @@
+# Ignore les fichiers d'environnement
+.env
+
+# Ignore le dossier node_modules
+node_modules/
+
+# Ignore les fichiers Firebase secrets
+.firebase/
+firebase-debug.log
+
+# Ignore le fichier de configuration locale
+.firebase.json
